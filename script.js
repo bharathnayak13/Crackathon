@@ -11,14 +11,34 @@ function registerDonor() {
   const email = document.getElementById("email").value.trim();
   const contact = document.getElementById("contact").value.trim();
 
+  // Basic field check
   if (!name || !age || !location || !contact || !email) {
     alert("Please fill all fields.");
     return;
   }
 
-  // Save donor
-  donors.push({ name, gender, age, bloodGroup, location, email, contact });
+  // Age validation (18-65)
+  const ageNum = parseInt(age);
+  if (isNaN(ageNum) || ageNum < 18 || ageNum > 65) {
+    alert("Age must be a number between 18 and 65.");
+    return;
+  }
 
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  // Contact number validation (10 digits)
+  if (!/^\d{10}$/.test(contact)) {
+    alert("Please enter a valid 10-digit contact number.");
+    return;
+  }
+
+  // Save donor
+  donors.push({ name, gender, age: ageNum, bloodGroup, location, email, contact });
   alert("Donor Registered Successfully!");
 
   // Clear fields

@@ -6,54 +6,109 @@
   <title>Blood Donation App</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    header {
-      background: #d32f2f;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
     }
+
+    header {
+      background-color: #c62828;
+      color: #fff;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
     .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      margin: 2rem;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
     }
+
     .card {
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      width: 300px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      width: 350px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      color: #c62828;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
     input, select, button {
       width: 100%;
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-      border-radius: 4px;
+      padding: 0.65rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      font-size: 1rem;
     }
+
+    input:focus, select:focus {
+      border-color: #c62828;
+      outline: none;
+      box-shadow: 0 0 5px rgba(198,40,40,0.3);
+    }
+
     button {
-      background: #d32f2f;
-      color: white;
-      border: none;
+      background-color: #c62828;
+      color: #fff;
+      font-weight: 600;
+      margin-top: 1.5rem;
       cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease;
     }
+
     button:hover {
-      background: #b71c1c;
+      background-color: #b71c1c;
     }
+
+    #results {
+      margin-top: 1rem;
+    }
+
     .donor-card {
-      background: #f9f9f9;
+      background-color: #fafafa;
       border: 1px solid #ddd;
-      padding: 0.5rem;
+      border-radius: 6px;
+      padding: 0.75rem;
       margin: 0.5rem 0;
-      border-radius: 4px;
     }
   </style>
 </head>
@@ -67,20 +122,21 @@
     <div class="card">
       <h2>Register as Donor</h2>
 
-      <label>Name</label>
-      <input type="text" id="name" placeholder="Enter donor name">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter full name">
 
-      <label>Gender</label>
+      <label for="gender">Gender</label>
       <select id="gender">
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Other">Other</option>
       </select>
 
-      <label>Age</label>
-      <input type="number" id="age" placeholder="Enter age" min="18" max="70">
+      <label for="age">Age</label>
+<input type="number" id="age" placeholder="Enter age" min="18" max="65" oninput="this.value = this.value.slice(0, 2)">
 
-      <label>Blood Group</label>
+
+      <label for="bloodGroup">Blood Group</label>
       <select id="bloodGroup">
         <option value="A+">A+</option>
         <option value="A-">A-</option>
@@ -92,23 +148,78 @@
         <option value="AB-">AB-</option>
       </select>
 
-      <label>Location</label>
-      <input type="text" id="location" placeholder="Enter city/location">
+      <label for="location">City / Location</label>
+<select id="location">
+  <option value="">Select City</option>
+  <option value="Mumbai">Mumbai</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Bengaluru">Bengaluru</option>
+  <option value="Kolkata">Kolkata</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Hyderabad">Hyderabad</option>
+  <option value="Pune">Pune</option>
+  <option value="Ahmedabad">Ahmedabad</option>
+  <option value="Jaipur">Jaipur</option>
+  <option value="Lucknow">Lucknow</option>
+  <option value="Kanpur">Kanpur</option>
+  <option value="Nagpur">Nagpur</option>
+  <option value="Indore">Indore</option>
+  <option value="Thane">Thane</option>
+  <option value="Bhopal">Bhopal</option>
+  <option value="Visakhapatnam">Visakhapatnam</option>
+  <option value="Patna">Patna</option>
+  <option value="Vadodara">Vadodara</option>
+  <option value="Ghaziabad">Ghaziabad</option>
+  <option value="Ludhiana">Ludhiana</option>
+  <option value="Agra">Agra</option>
+  <option value="Nashik">Nashik</option>
+  <option value="Faridabad">Faridabad</option>
+  <option value="Meerut">Meerut</option>
+  <option value="Rajkot">Rajkot</option>
+  <option value="Kalyan-Dombivli">Kalyan-Dombivli</option>
+  <option value="Vasai-Virar">Vasai-Virar</option>
+  <option value="Varanasi">Varanasi</option>
+  <option value="Srinagar">Srinagar</option>
+  <option value="Aurangabad">Aurangabad</option>
+  <option value="Dhanbad">Dhanbad</option>
+  <option value="Amritsar">Amritsar</option>
+  <option value="Navi Mumbai">Navi Mumbai</option>
+  <option value="Allahabad">Allahabad</option>
+  <option value="Ranchi">Ranchi</option>
+  <option value="Howrah">Howrah</option>
+  <option value="Coimbatore">Coimbatore</option>
+  <option value="Jabalpur">Jabalpur</option>
+  <option value="Gwalior">Gwalior</option>
+  <option value="Vijayawada">Vijayawada</option>
+  <option value="Jodhpur">Jodhpur</option>
+  <option value="Madurai">Madurai</option>
+  <option value="Raipur">Raipur</option>
+  <option value="Kota">Kota</option>
+  <option value="Guwahati">Guwahati</option>
+  <option value="Chandigarh">Chandigarh</option>
+  <option value="Solapur">Solapur</option>
+  <option value="Hubli-Dharwad">Hubli-Dharwad</option>
+  <option value="Mysore">Mysore</option>
+  <option value="Tiruchirappalli">Tiruchirappalli</option>
+</select>
 
-      <label>Email</label>
-      <input type="email" id="email" placeholder="Enter email">
 
-      <label>Contact</label>
-      <input type="text" id="contact" placeholder="Enter contact number">
+      <label for="email">Email</label>
+<input type="email" id="email" placeholder="Enter email address" required>
+
+
+      <label for="contact">Contact Number</label>
+<input type="tel" id="contact" placeholder="Enter 10-digit mobile number" maxlength="10" pattern="[0-9]{10}" title="Enter a valid 10-digit mobile number">
+
 
       <button type="button" onclick="registerDonor()">Register Donor</button>
-      <p class="tip">Tip: add 2–3 donors to make the demo look great.</p>
     </div>
 
     <!-- Find Donor -->
     <div class="card">
       <h2>Find Donor</h2>
-      <label>Select Blood Group</label>
+
+      <label for="searchGroup">Select Blood Group</label>
       <select id="searchGroup">
         <option value="A+">A+</option>
         <option value="A-">A-</option>
