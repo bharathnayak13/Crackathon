@@ -1,52 +1,46 @@
-// Array to store donors
+// Store donors in memory
 let donors = [];
 
-// Handle donor registration
-document.getElementById("donorForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const age = document.getElementById("age").value;
+// Register donor function
+function registerDonor() {
+  const name = document.getElementById("name").value.trim();
   const bloodGroup = document.getElementById("bloodGroup").value;
-  const city = document.getElementById("city").value;
-  const contact = document.getElementById("contact").value;
+  const contact = document.getElementById("contact").value.trim();
 
-  // Add donor to array
-  donors.push({ name, age, bloodGroup, city, contact });
-
-  alert("Donor Registered Successfully!");
-
-  // Reset form
-  this.reset();
-});
-
-// Handle search donors
-document.getElementById("searchGroup").addEventListener("change", function () {
-  const selectedGroup = this.value;
-  const donorList = document.getElementById("donorList");
-  donorList.innerHTML = "";
-
-  const filtered = donors.filter(donor => donor.bloodGroup === selectedGroup);
-
-  if (filtered.length === 0) {
-    donorList.innerHTML = "<p class='text-center text-muted'>No donors found.</p>";
+  if (name === "" || contact === "") {
+    alert("Please fill all fields.");
     return;
   }
 
-  filtered.forEach(donor => {
-    donorList.innerHTML += `
-      <div class="col-md-4">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">${donor.name} (${donor.age} yrs)</h5>
-            <p class="card-text">
-              <strong>Blood Group:</strong> ${donor.bloodGroup}<br>
-              <strong>City:</strong> ${donor.city}<br>
-              <strong>Contact:</strong> ${donor.contact}
-            </p>
-          </div>
-        </div>
-      </div>
-    `;
+  // Save donor
+  donors.push({ name, bloodGroup, contact });
+
+  alert("Donor Registered Successfully!");
+
+  // Clear fields
+  document.getElementById("name").value = "";
+  document.getElementById("contact").value = "";
+}
+
+// Find donor function
+function findDonor() {
+  const searchGroup = document.getElementById("searchGroup").value;
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = "";
+
+  const filteredDonors = donors.filter(donor => donor.bloodGroup === searchGroup);
+
+  if (filteredDonors.length === 0) {
+    resultsDiv.innerHTML = `<p style="color:red;">No donors found for ${searchGroup}</p>`;
+    return;
+  }
+
+  filteredDonors.forEach(donor => {
+    const card = document.createElement("div");
+    card.className = "donor-card";
+    card.innerHTML = `<h3>${donor.name}</h3>
+                      <p>Blood Group: ${donor.bloodGroup}</p>
+                      <p>Contact: ${donor.contact}</p>`;
+    resultsDiv.appendChild(card);
   });
-});
+}

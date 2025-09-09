@@ -1,0 +1,102 @@
+
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #ff9a9e, #fecfef);
+}
+
+header {
+  background: #b71c1c;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Card Box */
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+h2 {
+  text-align: center;
+  color: #b71c1c;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f28b82;
+  padding-bottom: 0.5rem;
+}
+
+/* Form Elements */
+label {
+  font-weight: bold;
+  margin-top: 1rem;
+  display: block;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(to right, #e53935, #b71c1c);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(to right, #b71c1c, #7f0000);
+}
+
+.tip {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  color: #d32f2f;
+}
+
+/* Donor Results */
+#results {
+  margin-top: 1rem;
+}
+
+.donor-card {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  margin-top: 0.6rem;
+  border-radius: 8px;
+  background: #fff5f5;
+}
+
+.donor-card h3 {
+  margin: 0;
+  color: #b71c1c;
+}
