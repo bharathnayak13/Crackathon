@@ -1,111 +1,64 @@
-/* Reset and base */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root{
+  --bg:#0f172a;
+  --card:#111827;
+  --muted:#94a3b8;
+  --text:#e5e7eb;
+  --accent:#22c55e;
+  --danger:#ef4444;
+  --ghost:#334155;
+  --border:#1f2937;
 }
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,#0b1224,#0f172a);
+  color:var(--text);
+}
+.site-header{padding:28px 18px;text-align:center;border-bottom:1px solid var(--border)}
+.site-header h1{margin:0 0 6px;font-size:28px}
+.site-header p{margin:0;color:var(--muted)}
+.container{max-width:980px;margin:22px auto;padding:0 14px}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{
+  background:var(--ghost); color:#fff; border:1px solid var(--border);
+  padding:10px 14px; border-radius:12px; cursor:pointer
+}
+.tab.active{background:var(--accent);color:#08140b}
+.panel{display:none;background:var(--card);padding:18px;border:1px solid var(--border);border-radius:16px}
+.panel.active{display:block}
+h2{margin-top:4px}
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  line-height: 1.6;
+.grid{
+  display:grid; gap:14px;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  margin-top:10px
 }
+label, fieldset{display:flex;flex-direction:column;gap:6px}
+input, select{
+  padding:10px; border:1px solid var(--border); border-radius:10px;
+  background:#0b1220; color:var(--text)
+}
+.multi{min-height:170px}
+.checkbox-inline{display:flex;align-items:center;gap:10px;flex-direction:row}
+.full{grid-column:1 / -1}
+.time-window{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+small{color:var(--muted)}
 
-/* Header */
-header {
-  background-color: #c62828;
-  color: #fff;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+button{
+  padding:10px 14px; border:none; border-radius:12px; cursor:pointer; font-weight:600
 }
-header h1 {
-  font-size: 2rem;
-  letter-spacing: 1px;
-}
+.primary{background:var(--accent); color:#04160a}
+.danger{background:var(--danger)}
+.ghost{background:var(--ghost); color:#fff}
+.controls{display:flex; gap:10px; margin-bottom:12px}
 
-/* Container */
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: auto;
+.results{margin-top:14px; display:grid; gap:10px}
+.card{
+  border:1px solid var(--border); border-radius:14px; padding:12px; background:#0b1220
 }
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;background:#1f2937;margin-right:6px;font-size:12px}
+.badge.ok{background:#14532d}
+.badge.warn{background:#7f1d1d}
+.msg{margin-top:10px}
 
-/* Cards */
-.card {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-.card h2 {
-  color: #c62828;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 0.5rem;
-}
-
-/* Form Elements */
-label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-}
-
-input, select, button {
-  width: 100%;
-  padding: 0.65rem;
-  margin-top: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-input:focus, select:focus {
-  border-color: #c62828;
-  outline: none;
-  box-shadow: 0 0 5px rgba(198,40,40,0.3);
-}
-
-button {
-  background-color: #c62828;
-  color: #fff;
-  font-weight: 600;
-  margin-top: 1.5rem;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.2s ease;
-}
-button:hover {
-  background-color: #b71c1c;
-}
-
-/* Donor cards */
-#results {
-  margin-top: 1rem;
-}
-.donor-card {
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0.75rem;
-  margin: 0.5rem 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-  }
-}
+.site-footer{padding:18px 14px;text-align:center;color:var(--muted)}

@@ -1,61 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blood Donation App</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blood Donation – Donor & Finder</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header>
-    <h1>Blood Donation App</h1>
+  <header class="site-header">
+    <h1>Blood Donation Helper</h1>
+    <p>Find safe & available donors with location and health checks</p>
   </header>
 
   <main class="container">
-    <!-- Register Donor -->
-    <section class="card">
-      <h2>Register as Donor</h2>
+    <nav class="tabs">
+      <button class="tab active" data-target="#find">Find Donor</button>
+      <button class="tab" data-target="#register">Register as Donor</button>
+      <button class="tab" data-target="#admin">Admin / All Donors</button>
+    </nav>
 
-      <label for="name">Full Name</label>
-      <input type="text" id="name" placeholder="Enter full name" required>
+    <!-- FIND SECTION -->
+    <section id="find" class="panel active">
+      <h2>Find a Donor</h2>
+      <form id="findForm" class="grid">
+        <label>
+          Needed Blood Group
+          <select id="f_blood" required>
+            <option value="">-- Select --</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option>
+            <option>O+</option><option>O-</option>
+          </select>
+        </label>
 
-      <label for="gender">Gender</label>
-      <select id="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
+        <label>
+          Needed Location (Taluk/City)
+          <select id="f_location" required></select>
+        </label>
 
-      <label for="age">Age</label>
-      <input type="number" id="age" placeholder="18–65" min="18" max="65" required>
+        <label>
+          Needed Date & Time
+          <input id="f_datetime" type="datetime-local" required/>
+        </label>
 
-      <label for="bloodGroup">Blood Group</label>
-      <select id="bloodGroup"></select>
+        <label class="checkbox-inline">
+          <input id="f_allowTravel" type="checkbox" checked/>
+          Include donors willing to travel to this location
+        </label>
 
-      <label for="location">City / Location</label>
-      <select id="location"></select>
+        <button type="submit" class="primary">Search Donors</button>
+      </form>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter valid email" required>
-
-      <label for="contact">Contact Number</label>
-      <input type="tel" id="contact" placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}" required>
-
-      <button type="button" id="registerBtn">Register Donor</button>
+      <div id="findResults" class="results"></div>
     </section>
 
-    <!-- Find Donor -->
-    <section class="card">
-      <h2>Find Donor</h2>
+    <!-- REGISTER SECTION -->
+    <section id="register" class="panel">
+      <h2>Register as a Donor</h2>
+      <form id="regForm" class="grid">
+        <label>
+          Full Name
+          <input id="d_name" type="text" required />
+        </label>
 
-      <label for="searchGroup">Select Blood Group</label>
-      <select id="searchGroup"></select>
+        <label>
+          Phone (WhatsApp preferred)
+          <input id="d_phone" type="tel" pattern="[0-9+\s-]{8,}" required />
+        </label>
 
-      <button type="button" id="searchBtn">Search</button>
+        <label>
+          Blood Group
+          <select id="d_blood" required>
+            <option value="">-- Select --</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option>
+            <option>O+</option><option>O-</option>
+          </select>
+        </label>
 
-      <div id="results"></div>
+        <label>
+          Home Location
+          <select id="d_home" required></select>
+        </label>
+
+        <fieldset class="full">
+          <legend>Areas I can travel to (hold Ctrl/⌘ to choose multiple)</legend>
+          <select id="d_coverage" multiple size="6" class="multi"></select>
+          <small>Your home location will be included automatically.</small>
+        </fieldset>
+
+        <fieldset class="full">
+          <legend>Health Check (IMPORTANT)</legend>
+          <label class="checkbox-inline">
+            <input id="d_sick" type="checkbox" />
+            I currently have fever/cold/any illness (or on antibiotics)
+          </label>
+          <small>If checked, you will be hidden from search until you recover.</small>
+        </fieldset>
+
+        <fieldset class="full">
+          <legend>Availability</legend>
+          <label class="checkbox-inline">
+            <input id="d_availableNow" type="checkbox" checked />
+            I’m available now / can be contacted anytime
+          </label>
+
+          <div class="time-window">
+            <span>OR set a time window:</span>
+            <input id="d_from" type="datetime-local" />
+            <input id="d_to" type="datetime-local" />
+          </div>
+        </fieldset>
+
+        <button type="submit" class="primary">Save Registration</button>
+      </form>
+
+      <div id="regMsg" class="msg"></div>
+    </section>
+
+    <!-- ADMIN SECTION -->
+    <section id="admin" class="panel">
+      <h2>All Registered Donors</h2>
+      <div class="controls">
+        <button id="seedBtn" class="ghost">Add Sample Donors</button>
+        <button id="clearBtn" class="danger">Clear All</button>
+      </div>
+      <div id="adminList" class="results"></div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <small>Disclaimer: This demo uses localStorage and does not replace medical screening. Always follow hospital/blood bank guidance.</small>
+  </footer>
 
   <script src="script.js"></script>
 </body>
