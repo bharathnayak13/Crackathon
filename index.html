@@ -1,11 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Donation Connect</title>
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Blood Donation Connect</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="display-4 fw-bold">Donate Blood, Save Lives ❤</h1>
+    <p class="lead">Connecting donors with those in need. Every drop counts.</p>
+  </section>
+
+  <!-- Donor Registration -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Register as a Donor</h2>
+    <form id="donorForm" class="row g-3">
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+      </div>
+      <div class="col-md-6">
+        <input type="number" class="form-control" id="age" placeholder="Age" required>
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" id="bloodGroup" required>
+          <option value="">Blood Group</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="city" placeholder="City" required>
+      </div>
+      <div class="col-md-4">
+        <input type="tel" class="form-control" id="contact" placeholder="Contact No." required>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-danger">Register</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Search Donors -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Search Donors</h2>
+    <div class="row mb-3">
+      <div class="col-md-6 mx-auto">
+        <select id="searchGroup" class="form-select">
+          <option value="">Select Blood Group</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+    </div>
+    <div id="donorList" class="row g-4"></div>
+  </section>
+
+  <!-- Emergency Contacts -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Emergency Contacts</h2>
+    <ul class="list-group">
+      <li class="list-group-item">Red Cross Helpline: <strong>1800-233-646</strong></li>
+      <li class="list-group-item">National Blood Bank: <strong>104</strong></li>
+      <li class="list-group-item">Ambulance: <strong>108</strong></li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-danger text-white text-center p-3">
+    <p class="mb-0">© 2025 Blood Donation Connect | Made with ❤ in Hackathon</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
 </body>
 </html>
